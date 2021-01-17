@@ -1,12 +1,13 @@
 package app;
 
 import list.StringArrayList;
+import list.StringLinkedList;
 
 import java.util.Scanner;
 
 
 public class PhoneBook {
-    static StringArrayList phoneBook = new StringArrayList(1000);
+    static StringLinkedList phoneBook = new StringLinkedList();
     static Scanner SCANNER = new Scanner(System.in);
 
     static public int menu() {
@@ -65,6 +66,19 @@ public class PhoneBook {
     }
 
 
+    public static void removePhoneNumber() {
+        System.out.println("Podaj numer pozycji do usunięcia ");
+        if (SCANNER.hasNextInt()) {
+            int number = SCANNER.nextInt();
+            SCANNER.nextLine();
+            phoneBook.remove(number);
+
+        } else {
+            SCANNER.nextLine();
+            System.out.println("Nie podałeś poprawnej liczby !!!");
+        }
+    }
+
     public static void main(String[] args) {
         init();
         while (true) {
@@ -86,6 +100,7 @@ public class PhoneBook {
                 }
                 case 4: {
                     System.out.println("Usuwanie");
+                    removePhoneNumber();
                     break;
                 }
                 case 0: {
