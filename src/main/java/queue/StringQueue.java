@@ -2,7 +2,6 @@ package queue;
 
 import list.StringLinkedList;
 
-    //TODO samodzielnie napisz testy
     public class StringQueue {
         StringLinkedList list = new StringLinkedList();
 
