@@ -4,11 +4,21 @@ import list.StringArrayList;
 import list.StringLinkedList;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class PhoneBook {
     static StringLinkedList phoneBook = new StringLinkedList();
     static Scanner SCANNER = new Scanner(System.in);
+    static Pattern phoneNumberPatter = Pattern.compile("\\d{3}-\\d{3}-\\d{3}");
+
+    static public boolean isValidPhoneNumber(String number) {
+        Matcher phoneNumberMatcher = phoneNumberPatter.matcher(number);
+        return phoneNumberMatcher.matches();
+
+
+    }
 
     static public int menu() {
         System.out.println("1. Wyświetl wszystkie");
@@ -43,7 +53,14 @@ public class PhoneBook {
     public static void addPhoneNymber() {
         System.out.println("Wpisz nowy numer");
         String item = SCANNER.nextLine();
-        phoneBook.add(item);
+        if (isValidPhoneNumber(item)) {
+
+            phoneBook.add(item);
+            System.out.println("Numer poprawny został dodany ");
+
+        } else {
+            System.out.println("Format numeru niepoprawny.Wpisz w postaci ddd-ddd-ddd");
+        }
     }
 
     public static void findPhoneNumber() {
